@@ -1,0 +1,187 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Message Classifier</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            resize: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #4f7cff;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #4f7cff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3b65d4;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .important {
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .promotional {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .result h2 {
+            margin-bottom: 8px;
+        }
+
+        .confidence {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Message Classifier</h1>
+
+        <p class="subtitle">
+            Naive Bayes based message classification
+        </p>
+
+        <form method="POST">
+
+            <label for="message">
+                Enter your message
+            </label>
+
+            <textarea
+                id="message"
+                name="message"
+                placeholder="Type your message here..."
+                required>{{ message }}</textarea>
+
+            <button type="submit">
+                Submit
+            </button>
+
+        </form>
+
+
+        {% if prediction %}
+
+            {% if prediction == "Important" %}
+
+                <div class="result important">
+
+                    <h2>Important</h2>
+
+                    <p>
+                        This message has been classified as important.
+                    </p>
+
+                    <p class="confidence">
+                        Confidence: {{ confidence }}%
+                    </p>
+
+                </div>
+
+            {% else %}
+
+                <div class="result promotional">
+
+                    <h2>Promotional</h2>
+
+                    <p>
+                        This message has been classified as promotional.
+                    </p>
+
+                    <p class="confidence">
+                        Confidence: {{ confidence }}%
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
+```
